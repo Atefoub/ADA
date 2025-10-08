@@ -14,3 +14,21 @@ console.log ("________________________________")
 for (let i = 49; i > 0; i--) {
     console.log(i);
    }
+
+console.log ("________________________________")
+
+let number = 49
+
+while (number < 99) {
+    number++;
+    console.log (number)
+}
+
+console.log ("________________________________")
+
+let number2 = 50
+
+while (number2 > 1) {
+    number2--;
+    console.log (number2)
+}
