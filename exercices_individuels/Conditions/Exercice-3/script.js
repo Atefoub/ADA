@@ -1,18 +1,18 @@
 // Ecris avec des mots ce que fais le code puis lis ta phrase à un encadrant :
 
-//     int tmp = 15; 
+//     int tmp = 15;
 
-//     if (tmp < 0)   
+//     if (tmp < 0)
 //         printf("Freezing weather.");
-//     else if (tmp < 10)  
+//     else if (tmp < 10)
 //         printf("Very cold weather.");
-//     else if (tmp < 20)  
+//     else if (tmp < 20)
 //         printf("Cold weather.");   .
-//     else if (tmp < 30)  
-//         printf("Normal in temp."); 
-//     else if (tmp < 40)   
-//         printf("Its Hot."); 
-//     else  
+//     else if (tmp < 30)
+//         printf("Normal in temp.");
+//     else if (tmp < 40)
+//         printf("Its Hot.");
+//     else
 //         printf("Its very hot.");
 // Ré-écris ce code en javascript en utilisant des IF/ELSE etc. Puis en utilisant un switch case.
 
@@ -25,23 +25,42 @@
 // Si la température est inférieur à 40°C il affiche "Its Hot."
 // sinon il affiche "Its very hot."
 
-let tmp = 15
+let tmp = 10;
 
-if (tmp < 0){
+if (tmp < 0) {
+  console.log("Freezing weather.");
+} else if (tmp < 10) {
+  console.log("Very cold weather");
+} else if (tmp < 20) {
+  console.log("cold weather");
+} else if (tmp < 30) {
+  console.log("Normal in temp");
+} else if (tmp < 40) {
+  console.log("Its Hot");
+} else {
+  console.log("Its very hot");
+}
+
+// SWITCH CASE
+
+let tmp = 12;
+
+switch (true) {
+  case tmp < 0:
     console.log("Freezing weather.");
-}
-else if (tmp < 10) {
+    break;
+  case tmp < 10:
     console.log("Very cold weather");
-}
-else if (tmp < 20) {
-    console.log("cold weather");
-}
-else if (tmp < 30) {
-    console.log("Normal in temp");
-}
-else if (tmp < 40) {
+    break;
+  case tmp < 20:
+    console.log("Cold weather");
+    break;
+  case tmp < 30:
+    console.log("normal in temp");
+    break;
+  case tmp < 40:
     console.log("Its Hot");
-}
-else {
-    console.log("Its very hot");
+    break;
+  default:
+    console.log("Its very Hot");
 }
