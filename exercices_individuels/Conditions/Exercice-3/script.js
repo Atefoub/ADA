@@ -43,22 +43,22 @@ if (tmp < 0) {
 
 // SWITCH CASE
 
-let tmp = 12;
+let tmp_test = 50;
 
 switch (true) {
-  case tmp < 0:
+  case tmp_test < 0:
     console.log("Freezing weather.");
     break;
-  case tmp < 10:
+  case tmp_test < 10:
     console.log("Very cold weather");
     break;
-  case tmp < 20:
+  case tmp_test < 20:
     console.log("Cold weather");
     break;
-  case tmp < 30:
+  case tmp_test < 30:
     console.log("normal in temp");
     break;
-  case tmp < 40:
+  case tmp_test < 40:
     console.log("Its Hot");
     break;
   default:
