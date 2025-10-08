@@ -1,0 +1,33 @@
+```javascript
+counter.onclick = () => (counter.textContent = ++count + " clics!");
+```
+
+---
+
+### 🧩 Décomposition étape par étape
+
+#### 1. `counter.onclick = ...`
+- Cela **associe une fonction** à l'événement `onclick` du bouton HTML dont l'ID est `counter`.
+- Autrement dit : **quand l'utilisateur clique sur ce bouton**, la fonction définie à droite du `=` sera exécutée.
+
+#### 2. `() => (...)`
+- C’est une **fonction fléchée** (arrow function), introduite avec ES6.
+- Elle signifie : "quand on clique, exécute ce qui est dans les parenthèses".
+- Ici, elle ne prend **aucun paramètre** (d’où les parenthèses vides `()`).
+
+#### 3. `counter.textContent = ...`
+- Cette partie **modifie le texte affiché** à l’intérieur du bouton.
+- `textContent` est une propriété qui représente le **contenu textuel** d’un élément HTML.
+
+#### 4. `++count`
+- C’est un **incrément préfixé** : on **augmente la valeur de `count` de 1**, **avant** de l’utiliser.
+- Si `count` vaut 0, alors `++count` devient 1.
+
+#### 5. `++count + " clics!"`
+- On **concatène** la valeur numérique de `count` (après l’incrément) avec la chaîne `" clics!"`.
+- Exemple : si `count` était 4, après le clic ça devient `5 clics!`.
+
+#### 6. Résultat global
+- À chaque clic sur le bouton :
+  - `count` augmente de 1.
+  - Le texte du bouton devient `"X clics!"`, où X est le nouveau nombre de clics.
