@@ -70,6 +70,6 @@ moyennes(students)
 
 // 2-
 
-function idMajor(students) {
+function idMajor() {
 
 }
