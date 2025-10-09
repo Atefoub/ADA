@@ -67,3 +67,9 @@ function moyennes(students) {
 }
 
 moyennes(students)
+
+// 2-
+
+function idMajor(students) {
+
+}
