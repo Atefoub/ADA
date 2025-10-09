@@ -68,8 +68,23 @@ function moyennes(students) {
 
 moyennes(students)
 
-// 2-
-
-function idMajor() {
-
-}
+// 🧠 Étape par étape :
+// 1. function moyennes(students) { ... }
+// - Tu déclares une fonction nommée moyennes.
+// - Elle prend un paramètre students, qui est un objet contenant tous les étudiant·es.
+// 2. for (let s in students)
+// - Tu utilises une boucle for...in pour parcourir chaque clé de l’objet students.
+// - Chaque s est un identifiant d’étudiant·e, comme "A001", "A002", etc.
+// 3. students[s].grades
+// - Tu accèdes à l’étudiant·e correspondant à l’identifiant s.
+// - Puis tu récupères son tableau de notes (grades), par exemple [14, 16, 12, 18, 15].
+// 4. .reduce((a, b) => a + b)
+// - Tu utilises .reduce() pour additionner toutes les notes.
+// - a est l’accumulateur, b est la note actuelle.
+// - Exemple : [14, 16, 12] devient 14 + 16 + 12 = 42.
+// 5. / students[s].grades.length
+// - Tu divises la somme des notes par le nombre de notes pour obtenir la moyenne.
+// - Exemple : 42 / 3 = 14.
+// 6. console.log(...)
+// - Tu affiches directement la moyenne dans la console.
+// - Une ligne par étudiant·e, sans nom ni identifiant
