@@ -60,13 +60,14 @@ const students = {
 
 // 1-
 
-function averageGrades() {
-  let totalNotes = 0;
-  for (let i = 0; i < grades.length; i++) {
-    totalNotes += books[i].grades;
+function calculerMoyennes(students) {
+  let moyennes = {};
+  for (let id in students) {
+    const notes = students[id].grades;
+    const moyenne = notes / notes.length;
+    moyennes[id] = moyenne;
   }
-  const averageGrades = totalNotes / grades.length;
-  console.log("Moyenne des notes :", averageGrades);
+  return moyennes;
 }
 
-averageGrades()
+calculerMoyennes()
