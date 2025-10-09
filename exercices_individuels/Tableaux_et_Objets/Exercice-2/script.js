@@ -60,10 +60,40 @@ const students = {
 
 // 1-
 
-function moyennes(students) {
-  for (let s in students)
-    console.log(
-      students[s].grades.reduce((a, b) => a + b) / students[s].grades.length);
+function calculerMoyennes() {
+  let moyennes = {};
+  for (let id in students) {
+    let total = 0;
+    for (let note of students[id].grades) {
+      total += note;
+    }
+    moyennes[id] = total / students[id].grades.length;
+  }
+  return moyennes;
 }
 
-moyennes(students)
+console.log("Moyennes:", calculerMoyennes());
+
+// 2-
+
+function trouverParFiliere(filiere) {
+  let resultat = [];
+  for (let id in students) {
+    if (students[id].major === filiere) {
+      resultat.push(students[id].name);
+    }
+  }
+  return resultat;
+}
+
+console.log("Computer Science:", trouverParFiliere("Computer Science"));
+
+// 3-
+
+
+// 4-
+
+
+// 5-
+
+
