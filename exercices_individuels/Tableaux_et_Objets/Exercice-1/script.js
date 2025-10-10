@@ -63,58 +63,71 @@ const books = [
 
 // Consignes : Implémentez les fonctions suivantes :
 
-// 1- Trouver tous les livres d'un auteurice donné ( Aline Martin )
+// 1- Trouver tous les livres d'un auteurice donné ( Alice Martin )
 // 2- Calculer la moyenne des pages par genre
 // 3- Trouver le livre le plus récent
 // 4- Créer une liste unique de tous les auteurices
 // 5- Grouper les livres par genre
 
 // 1-
+
 function findBooksByAuthor(authorName) {
-  return books.filter((books) => books.author === authorName);
+  return books.filter(book => book.author === authorName);
 }
 
-const aliceBooks = findBooksByAuthor("Alice Martin");
-console.log(aliceBooks);
+console.log(findBooksByAuthor("Alice Martin"))
 
 // 2-
 
-function averagePages() {
-  let totalPages = 0;
-  for (let i = 0; i < books.length; i++) {
-    totalPages += books[i].pages;
+function averagePagesByGenre() {
+  const genreStats = {};
+  books.forEach(book => {
+    if (!genreStats[book.genre]) {
+      genreStats[book.genre] = { totalPages: 0, count: 0 };
+    }
+    genreStats[book.genre].totalPages += book.pages;
+    genreStats[book.genre].count += 1;
+  });
+
+  const averages = {};
+  for (const genre in genreStats) {
+    averages[genre] = genreStats[genre].totalPages / genreStats[genre].count;
   }
-  const averagePages = totalPages / books.length;
-  console.log("Moyenne des pages :", averagePages);
+  return averages;
 }
 
-averagePages()
+console.log(averagePagesByGenre())
+
 
 // 3-
 
-let mostRecent = books[0];
-
-for (let i = 1; i < books.length; i++) {
-  if (books[i].year > mostRecent.year) {
-    mostRecent = books[i];
-  }
+function findMostRecentBook() {
+  return books.reduce((latest, book) => book.year > latest.year ? book : latest, books[0]);
 }
 
-console.log("Livre le plus récent :", mostRecent);
+console.log(findMostRecentBook())
 
 // 4-
 
-console.log([...new Set(books.map(books => books.author))]);
+function getUniqueAuthors() {
+  return [...new Set(books.map(book => book.author))];
+}
+
+console.log(getUniqueAuthors())
 
 // 5-
 
-let groupes = {};
-
-for (let b of books) {
-  groupes[b.genre] = (groupes[b.genre] || []).concat(b);
+function groupBooksByGenre() {
+  return books.reduce((grouped, book) => {
+    if (!grouped[book.genre]) {
+      grouped[book.genre] = [];
+    }
+    grouped[book.genre].push(book);
+    return grouped;
+  }, {});
 }
 
-console.log(groupes);
+console.log(groupBooksByGenre())
 
 
 

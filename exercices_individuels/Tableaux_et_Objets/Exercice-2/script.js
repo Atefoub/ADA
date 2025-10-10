@@ -63,11 +63,11 @@ const students = {
 function calculerMoyennes() {
   let moyennes = {};
   for (let id in students) {
-    let total = 0;
+    let totalNotesbyId = 0;
     for (let note of students[id].grades) {
-      total += note;
+      totalNotesbyId += note;
     }
-    moyennes[id] = total / students[id].grades.length;
+    moyennes[id] = totalNotesbyId / students[id].grades.length;
   }
   return moyennes;
 }
@@ -89,11 +89,4 @@ function trouverParFiliere(filiere) {
 console.log("Computer Science:", trouverParFiliere("Computer Science"));
 
 // 3-
-
-
-// 4-
-
-
-// 5-
-
 
