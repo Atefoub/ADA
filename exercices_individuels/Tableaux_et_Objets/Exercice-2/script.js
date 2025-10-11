@@ -108,9 +108,43 @@ function meilleureMoyenne() {
   return `${meilleur} avec ${max.toFixed(2)}`;
 }
 
+console.log(meilleureMoyenne())
+
+
 
 // 4-
 
+function statsFiliere() {
+  let stats = {};
+
+  for (let id in students) {
+    let s = students[id], f = s.major;
+    stats[f] = stats[f] || { moy: 0, abs: 0, n: 0 };
+    stats[f].moy += s.grades.reduce((a, b) => a + b) / s.grades.length;
+    stats[f].abs += s.absences;
+    stats[f].n++;
+  }
+
+  for (let f in stats) {
+    stats[f].moy = (stats[f].moy / stats[f].n).toFixed(2);
+    stats[f].abs = (stats[f].abs / stats[f].n).toFixed(2);
+    delete stats[f].n;
+  }
+
+  return stats;
+}
+
+console.log("Statistiques par filière :", statsFiliere);
 
 
+// 5-
+
+function ajouterNote(id, note) {
+  if (students[id]) {
+    students[id].grades.push(note);
+  }
+}
+
+ajouterNote("A002", 17);
+console.log("Nouvelles notes de Bob :", students["A002"].grades);
 
