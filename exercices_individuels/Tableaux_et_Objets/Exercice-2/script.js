@@ -60,33 +60,57 @@ const students = {
 
 // 1-
 
-function calculerMoyennes() {
-  let moyennes = {};
-  for (let id in students) {
-    let totalNotesbyId = 0;
-    for (let note of students[id].grades) {
-      totalNotesbyId += note;
+function calculerMoyennes() {                          // Déclaration de la fonction pour calculer les moyennes
+  let moyennes = {};                                   // Initialisation d'un objet vide pour stocker les moyennes
+  for (let id in students) {                           // Parcours de chaque étudiant par son identifiant
+    let totalNotesbyId = 0;                            // Initialisation du total des notes pour cet étudiant
+    for (let note of students[id].grades) {            // Parcours de chaque note de l'étudiant
+      totalNotesbyId += note;                          // Ajout de la note au total
     }
-    moyennes[id] = totalNotesbyId / students[id].grades.length;
+
+    moyennes[id] = totalNotesbyId / students[id].grades.length; // Calcul de la moyenne et stockage dans l'objet
   }
-  return moyennes;
+  return moyennes;                                     // Retourne l'objet contenant les moyennes
 }
 
-console.log("Moyennes:", calculerMoyennes());
+console.log("Moyennes:", calculerMoyennes());          // Affiche les moyennes dans la console
 
 // 2-
 
-function trouverParFiliere(filiere) {
-  let resultat = [];
-  for (let id in students) {
-    if (students[id].major === filiere) {
-      resultat.push(students[id].name);
+function trouverParFiliere(filiere) {                      // Déclare une fonction qui cherche les étudiants par filière
+  let resultat = [];                                       // Initialise un tableau vide pour stocker les résultats
+
+  for (let id in students) {                               // Parcourt chaque étudiant dans l'objet students
+    if (students[id].major === filiere) {                  // Vérifie si la filière de l'étudiant correspond à celle recherchée
+      resultat.push(students[id].name);                    // Ajoute le nom de l'étudiant au tableau résultat
     }
   }
-  return resultat;
+
+  return resultat;                                         // Retourne le tableau des noms d'étudiants correspondant
 }
 
-console.log("Computer Science:", trouverParFiliere("Computer Science"));
+console.log("Computer Science:", trouverParFiliere("Computer Science")); // Affiche les étudiants en "Computer Science"
 
 // 3-
+
+function meilleureMoyenne() {
+  let meilleur = null;
+  let max = 0;
+
+  for (let id in students) {
+    let moy = parseFloat(moyenne(students[id]));
+    if (moy > max) {
+      max = moy;
+      meilleur = students[id].name;
+    }
+  }
+
+  return `${meilleur} avec ${max.toFixed(2)}`;
+}
+
+
+// 4-
+
+
+
 
