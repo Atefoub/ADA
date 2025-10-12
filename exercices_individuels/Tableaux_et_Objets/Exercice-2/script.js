@@ -94,47 +94,53 @@ console.log("Computer Science:", trouverParFiliere("Computer Science")); // Affi
 // 3-
 
 function meilleureMoyenne() {
-  let meilleur = null;
-  let max = 0;
+  let meilleurNom = null;
+  let meilleureNote = 0;
 
-  for (let id in students) {
-    let moy = parseFloat(moyenne(students[id]));
-    if (moy > max) {
-      max = moy;
-      meilleur = students[id].name;
+  for (let student of Object.values(students)) {
+    const moyenne = student.grades.reduce((a, b) => a + b, 0) / student.grades.length;
+    if (moyenne > meilleureNote) {
+      meilleureNote = moyenne;
+      meilleurNom = student.name;
     }
   }
 
-  return `${meilleur} avec ${max.toFixed(2)}`;
+  return `${meilleurNom} avec ${meilleureNote.toFixed(2)}`;
 }
 
-console.log(meilleureMoyenne())
-
+console.log("Meilleure moyenne :", meilleureMoyenne());
 
 
 // 4-
 
 function statsFiliere() {
-  let stats = {};
+  const stats = {};
 
-  for (let id in students) {
-    let s = students[id], f = s.major;
-    stats[f] = stats[f] || { moy: 0, abs: 0, n: 0 };
-    stats[f].moy += s.grades.reduce((a, b) => a + b) / s.grades.length;
-    stats[f].abs += s.absences;
-    stats[f].n++;
+  for (let student of Object.values(students)) {
+    const filiere = student.major;
+    const moyenne = student.grades.reduce((a, b) => a + b, 0) / student.grades.length;
+
+    if (!stats[filiere]) {
+      stats[filiere] = { totalMoyenne: 0, totalAbsences: 0, count: 0 };
+    }
+
+    stats[filiere].totalMoyenne += moyenne;
+    stats[filiere].totalAbsences += student.absences;
+    stats[filiere].count++;
   }
 
-  for (let f in stats) {
-    stats[f].moy = (stats[f].moy / stats[f].n).toFixed(2);
-    stats[f].abs = (stats[f].abs / stats[f].n).toFixed(2);
-    delete stats[f].n;
+  for (let filiere in stats) {
+    const data = stats[filiere];
+    stats[filiere] = {
+      moyenneGenerale: (data.totalMoyenne / data.count).toFixed(2),
+      tauxAbsentéisme: (data.totalAbsences / data.count).toFixed(2),
+    };
   }
 
   return stats;
 }
 
-console.log("Statistiques par filière :", statsFiliere);
+console.log("Statistiques par filière :", statsFiliere());
 
 
 // 5-
