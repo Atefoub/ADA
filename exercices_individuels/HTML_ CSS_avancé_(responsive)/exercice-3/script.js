@@ -1,26 +1,37 @@
-const form = document.getElementById('email-form');
-const emailInput = document.getElementById('email');
-const errorIcon = document.querySelector('.error-icon');
-const errorMessage = document.querySelector('.error-message');
-const inputGroup = document.querySelector('.input-group');
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('emailForm');
+  const input = document.getElementById('emailInput');
+  const icon = document.getElementById('errorIcon');
+  const message = document.getElementById('errorMessage');
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+  const showError = msg => {
+    input.classList.add('error');
+    icon.classList.add('show');
+    message.textContent = msg;
+    message.classList.add('show');
+  };
 
-  const email = emailInput.value.trim();
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const hideError = () => {
+    input.classList.remove('error');
+    icon.classList.remove('show');
+    message.textContent = '';
+    message.classList.remove('show');
+  };
 
-  if (email === '' || !isValidEmail) {
-    inputGroup.classList.add('error-state');
-    errorIcon.classList.remove('hidden');
-    errorMessage.classList.remove('hidden');
-    emailInput.setAttribute('aria-invalid', 'true');
-  } else {
-    inputGroup.classList.remove('error-state');
-    errorIcon.classList.add('hidden');
-    errorMessage.classList.add('hidden');
-    emailInput.removeAttribute('aria-invalid');
-    alert('Merci ! Votre email a bien été enregistré.');
-    emailInput.value = '';
-  }
+  const isValidEmail = email =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = input.value.trim();
+
+    if (!email) return showError("Email address cannot be empty");
+    if (!isValidEmail(email)) return showError("Please provide a valid email");
+
+    hideError();
+    alert("Thank you! Your email has been submitted successfully.");
+    input.value = '';
+  });
+
+  input.addEventListener('input', hideError);
 });

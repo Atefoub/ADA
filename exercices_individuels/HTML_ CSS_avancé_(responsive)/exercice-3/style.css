@@ -1,32 +1,54 @@
 :root {
-  --desaturated-red: hsl(0, 36%, 70%);
-  --soft-red: hsl(0, 93%, 68%);
-  --dark-grayish-red: hsl(0, 6%, 24%);
-  --gradient-light: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-  --gradient-accent: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+   --color-desaturated-red: hsl(0, 36%, 70%);
+  --color-soft-red: hsl(0, 93%, 68%);
+  --color-dark-grayish-red: hsl(0, 6%, 24%);
+  --gradient-white: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+  --gradient-button: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+  --gradient-button-hover: linear-gradient(135deg, hsl(0, 80%, 90%), hsl(0, 74%, 80%));
   --font-family: 'Josefin Sans', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+   --spacing-mobile: 2rem;
+  --spacing-desktop: 4rem;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-family);
   font-size: 16px;
-  background: var(--gradient-light);
-  color: var(--dark-grayish-red);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  background: var(--gradient-white);
   min-height: 100vh;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+.container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "hero-mobile"
+    "content";
 }
 
 .header {
-  width: 100%;
-  padding: 2rem;
-  position: relative;
-  z-index: 10;
+  grid-area: header;
+  padding: 2rem var(--spacing-mobile);
 }
 
 .logo {
@@ -34,223 +56,254 @@ body {
   height: auto;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
+.hero-image-mobile {
+  grid-area: hero-mobile;
+  width: 100%;
 }
 
-.hero-img {
-  display: block;
+.hero-image-mobile img {
   width: 100%;
   height: auto;
 }
 
+.hero-image-desktop {
+  display: none;
+}
+
 .content {
-  padding: 4rem 2rem;
+  grid-area: content;
+  padding: 4rem var(--spacing-mobile) 2rem;
   text-align: center;
-  max-width: 500px;
+}
+
+.title {
+  font-size: 2.5rem;
+  line-height: 1.05;
+  letter-spacing: 0.65rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-light {
+  font-weight: var(--font-weight-light);
+  color: var(--color-desaturated-red);
+}
+
+.title-bold {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark-grayish-red);
+}
+
+.description {
+  color: var(--color-desaturated-red);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.email-form {
+  width: 100%;
+  max-width: 445px;
   margin: 0 auto;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6rem;
-  color: var(--dark-grayish-red);
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
-
-h1 span {
-  color: var(--desaturated-red);
-  font-weight: 300;
-  display: block;
-}
-
-.content p {
-  color: var(--desaturated-red);
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  font-weight: 400;
-  font-size: 0.95rem;
-}
-
-form {
-  position: relative;
-}
-
-.input-group {
+.input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid var(--desaturated-red);
-  border-radius: 30px;
-  overflow: visible;
-  background: transparent;
 }
 
-.input-group.error-state {
-  border: 2px solid var(--soft-red);
-}
-
-input {
+.email-input {
   flex: 1;
-  padding: 1rem 1.5rem;
-  border: none;
-  outline: none;
-  font-size: 1rem;
+  width: 100%;
+  padding: 0.95rem 7rem 0.95rem 1.5rem;
+  border: 1px solid var(--color-desaturated-red);
+  border-radius: 28px;
   font-family: var(--font-family);
+  font-size: 0.875rem;
+  color: var(--color-dark-grayish-red);
   background: transparent;
-  color: var(--dark-grayish-red);
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-input::placeholder {
-  color: var(--desaturated-red);
+.email-input::placeholder {
+  color: var(--color-desaturated-red);
   opacity: 0.5;
 }
 
-button {
-  background: var(--gradient-accent);
+.email-input:focus {
+  border-color: var(--color-soft-red);
+}
+
+.email-input.error {
+  border: 2px solid var(--color-soft-red);
+}
+
+.icon-error {
+  position: absolute;
+  right: 4.5rem;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.icon-error.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.submit-button {
+  position: absolute;
+  right: 0;
+  width: 64px;
+  height: 100%;
   border: none;
-  padding: 1rem 2.5rem;
+  border-radius: 28px;
+  background: var(--gradient-button);
+  box-shadow: 0 15px 20px rgba(198, 110, 110, 0.25);
   cursor: pointer;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(206, 151, 151, 0.4);
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  box-shadow: 0 10px 40px rgba(206, 151, 151, 0.6);
+.submit-button:hover {
+  background: var(--gradient-button-hover);
+  box-shadow: 0 20px 30px rgba(198, 110, 110, 0.35);
   transform: scale(1.05);
 }
 
-button img {
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+.submit-button img {
   width: 12px;
   height: auto;
 }
 
-.error-icon {
-  position: absolute;
-  right: 90px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-}
-
 .error-message {
-  color: var(--soft-red);
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
+  color: var(--color-soft-red);
+  font-size: 0.8125rem;
   text-align: left;
-  padding-left: 1.5rem;
+  padding: 0.5rem 1.5rem 0;
+  min-height: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.hidden {
-  display: none;
+.error-message.show {
+  opacity: 1;
+  visibility: visible;
 }
 
-.footer {
+.attribution {
+  font-size: 11px;
   text-align: center;
-  font-size: 0.75rem;
   padding: 1rem;
-  color: var(--desaturated-red);
-  margin-top: auto;
+  color: var(--color-desaturated-red);
 }
 
-.footer a {
-  color: var(--dark-grayish-red);
+.attribution a {
+  color: hsl(228, 45%, 44%);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.footer a:hover {
+.attribution a:hover {
+  color: var(--color-soft-red);
   text-decoration: underline;
 }
 
-/* Desktop styles */
-@media (min-width: 768px) {
-  body {
-    background-image: url('./images/bg-pattern-desktop.svg');
-    background-repeat: no-repeat;
-    background-size: 58% 100%;
-    background-position: left top;
-  }
-
-  .main {
-    flex-direction: row-reverse;
-    min-height: 100vh;
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr 610px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "header hero-desktop"
+      "content hero-desktop";
     max-width: 1440px;
     margin: 0 auto;
-    align-items: stretch;
   }
 
   .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 4rem 10%;
-    z-index: 100;
+    padding: 4rem 0 0 10.5rem;
   }
 
   .logo {
     width: 158px;
   }
 
-  .hero {
-    flex: 0 0 42%;
-    min-height: 100vh;
+  .hero-image-mobile {
+    display: none;
   }
 
-  .hero-img {
+  .hero-image-desktop {
+    display: block;
+    grid-area: hero-desktop;
     height: 100%;
+  }
+
+  .hero-image-desktop img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   .content {
-    flex: 1;
-    padding: 0 10%;
+    padding: 2rem 10.5rem 6rem;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left;
-    max-width: none;
-    margin: 0;
   }
 
-  h1 {
+  .title {
     font-size: 4rem;
-    letter-spacing: 1rem;
+    letter-spacing: 1.08rem;
     margin-bottom: 1.5rem;
   }
 
-  .content p {
+  .description {
     font-size: 1rem;
+    line-height: 1.75;
     margin-bottom: 2.5rem;
-    max-width: 445px;
+    padding-right: 2rem;
   }
 
-  .input-group {
-    max-width: 445px;
+  .email-form {
+    margin: 0;
+  }
+  
+  .email-input {
+    padding: 1.1rem 8rem 1.1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .submit-button {
+    width: 100px;
+  }
+
+  .icon-error {
+    right: 6.5rem;
   }
 
   .error-message {
-    max-width: 445px;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 1rem;
-    left: 10%;
+    padding: 0.5rem 2rem 0;
   }
 }
 
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 4.5rem;
+@media (min-width: 1440px) {
+  body {
+    background-image: url('./images/bg-pattern-desktop.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
