@@ -1,0 +1,54 @@
+.grid {
+    /* conteneur principal en grille.
+       
+grid-template-columns: deux colonnes égales (1fr 1fr).
+gap: espace entre toutes les cellules (colonnes et lignes).
+height: 100vh -> le conteneur prend toute la hauteur de la fenêtre. */
+display: grid; 
+grid-template-columns: 1fr 1fr; 
+gap: 10px;
+height: 100vh;
+}
+
+.header {
+/
+    background-color: green;
+    grid-column: 1/3;
+    padding: 10px;
+}
+
+.main {
+    /* / zone principale : sera placée automatiquement dans la première colonne
+       non occupée après le header. / */
+    padding: 10px;
+    background-color: #000080;
+    color: aliceblue;
+}
+
+.top {
+    /* / élément placé à l'intérieur de .side (donc sa grille parent est .side).
+       Ici top est configuré pour s'étendre sur les deux colonnes de .side
+       (grid-column: 1/3 dans la grille interne de .side). / */
+    color: aliceblue;
+    padding: 10px;
+    grid-column: 1/3;
+    background-color: blueviolet;
+}
+
+.card {
+    / cartes dans le panneau latéral : disposition contrôlée par .side /
+    padding: 10px;
+    background-color: bisque;
+}
+
+.side {
+    / conteneur latéral qui est lui-même une grille :
+       
+display: grid active une grille pour ses enfants (.top, .card...)
+grid-template-columns: repeat(2, 1fr) crée 2 colonnes égales
+     dans .side (donc les enfants peuvent occuper 1 ou 2 colonnes).
+gap : espace interne entre les éléments de .side. */
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+}
