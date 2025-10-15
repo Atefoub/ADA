@@ -25,8 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const email = input.value.trim();
 
-    if (!email) return showError("Email address cannot be empty");
-    if (!isValidEmail(email)) return showError("Please provide a valid email");
+    if (!email) {
+      showError("Email address cannot be empty");
+      return; 
+    }
+    
+    if (!isValidEmail(email)) {
+      showError("Please provide a valid email");
+      return;
+    }
 
     hideError();
     alert("Thank you! Your email has been submitted successfully.");
