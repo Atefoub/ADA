@@ -42,7 +42,6 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  content: url('./images/hero-mobile.jpg');
 }
 
 .content {
@@ -151,7 +150,7 @@ button:hover {
     background-image: url('./images/bg-pattern-desktop.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: left center;
   }
 
   .main {
@@ -162,7 +161,6 @@ button:hover {
   }
 
   .hero-img {
-    content: url('./images/hero-desktop.jpg');
     height: 100%;
     object-fit: cover;
   }
