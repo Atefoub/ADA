@@ -74,10 +74,10 @@ header h1 {
   text-align: center;
 }
 #accueil img {
-  border-radius: 50%;
+  justify-content: center;
   margin: 1rem 0;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   box-shadow: 0 0 10px rgba(0,122,204,0.5);
 }
