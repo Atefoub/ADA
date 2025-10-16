@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess a number</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎯 Jeu de Devinette</h1>
+      <p id="range-display">0 &lt; ? &lt; 50</p>
+      <p id="attempts">Tentatives : 0</p>
+
+      <input type="number" id="guess-input" placeholder="Entrez votre nombre" />
+      <button id="submit-btn">Valider</button>
+
+      <p id="feedback"></p>
+      <p id="win-message" class="hidden">
+        Bravo ! Vous avez deviné le nombre 🎉
+      </p>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
