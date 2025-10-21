@@ -1,9 +1,12 @@
 // Variables globales
 let borneMin = 0;
-let borneMax = 50;
+let borneMax = 500;
 let essais = 0;
 let nombreSecret;
 let jeuActif = true;
+
+document.getElementById("intervalle").innerHTML = `${borneMin} &lt; ? &lt; ${borneMax}`;
+
 
 // Joueur 1 choisit le nombre
 function choisirNombre() {
