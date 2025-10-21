@@ -1,6 +1,6 @@
 // Variables globales
 let borneMin = 0;
-let borneMax = 500;
+let borneMax = 50;
 let essais = 0;
 let nombreSecret;
 let jeuActif = true;
@@ -54,7 +54,9 @@ function afficherIndice(resultat) {
 
 // Termine la partie
 function terminerJeu() {
-  document.getElementById("victoire").classList.remove("cache");
+  const victoireElement = document.getElementById("victoire");
+  victoireElement.textContent = `Gagné ! 🎉 Vous avez trouvé le nombre ${nombreSecret} !`;
+  victoireElement.classList.remove("cache");
   document.getElementById("nombre-input").disabled = true;
   document.getElementById("valider").disabled = true;
   jeuActif = false;
