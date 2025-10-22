@@ -78,7 +78,6 @@ function gagner() {
   victoire.classList.remove("cache");
   document.getElementById("nombre-input").disabled = true;
   document.getElementById("valider").disabled = true;
-  document.getElementById("message").disabled = " ";
   jeuActif = false;
 }
 
