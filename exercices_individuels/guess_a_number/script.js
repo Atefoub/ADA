@@ -1,15 +1,22 @@
-// Variables globales
+// VARIABLES
 let borneMin = 0;
 let borneMax = 50;
 let essais = 0;
 let nombreSecret;
 let jeuActif = true;
 
-document.getElementById("intervalle").innerHTML = `${borneMin} &lt; ? &lt; ${borneMax}`;
+// INITIALISATION
+function demarrerJeu() {
+  afficherIntervalle();
+  choisirNombreSecret();
+  
+  document.getElementById("valider").addEventListener("click", jouer);
+  document.getElementById("nombre-input").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") jouer();
+  });
+}
 
-
-// Joueur 1 choisit le nombre
-function choisirNombre() {
+function choisirNombreSecret() {
   let saisie;
   do {
     saisie = prompt(`Joueur 1 : Entrez un nombre entre ${borneMin} et ${borneMax}`);
@@ -17,94 +24,63 @@ function choisirNombre() {
   } while (isNaN(nombreSecret) || nombreSecret <= borneMin || nombreSecret >= borneMax);
 }
 
-// Vérifie si la proposition est correcte
-function verifier(proposition, cible) {
-  if (proposition === cible) {
-    return "gagne";
-  } else if (proposition < cible) {
-    return "plus";
-  } else {
-    return "moins";
-  }
+function afficherIntervalle() {
+  document.getElementById("intervalle").textContent = `${borneMin} < ? < ${borneMax}`;
 }
 
-// Met à jour l'intervalle
-function actualiserIntervalle(proposition) {
-  if (proposition > borneMin && proposition < nombreSecret) {
-    borneMin = proposition;
-  } else if (proposition < borneMax && proposition > nombreSecret) {
-    borneMax = proposition;
-  }
-  document.getElementById("intervalle").textContent = 
-    `${borneMin} < ? < ${borneMax}`;
-}
-
-// Affiche un message d'indication
-function afficherIndice(resultat) {
-  const messageElement = document.getElementById("message");
-  
-  if (resultat === "plus") {
-    messageElement.textContent = "C'est plus ! 👆";
-  } else if (resultat === "moins") {
-    messageElement.textContent = "C'est moins ! 👇";
-  } else {
-    messageElement.textContent = "";
-  }
-}
-
-// Termine la partie
-function terminerJeu() {
-  const victoireElement = document.getElementById("victoire");
-  victoireElement.textContent = `Gagné ! 🎉 Vous avez trouvé le nombre ${nombreSecret} !`;
-  victoireElement.classList.remove("cache");
-  document.getElementById("nombre-input").disabled = true;
-  document.getElementById("valider").disabled = true;
-  jeuActif = false;
-}
-
-// Fonction principale du jeu
+// JEU
 function jouer() {
   if (!jeuActif) return;
   
-  const inputElement = document.getElementById("nombre-input");
-  const proposition = parseInt(inputElement.value);
+  const proposition = parseInt(document.getElementById("nombre-input").value);
 
-  // Validation de la saisie
+  // Validation
   if (isNaN(proposition)) {
     alert("Entrez un nombre valide svp !");
     return;
   }
-
   if (proposition <= borneMin || proposition >= borneMax) {
     alert(`Le nombre doit être entre ${borneMin} et ${borneMax}`);
     return;
   }
 
-  // Incrémente le compteur
+  // Compteur
   essais++;
   document.getElementById("compteur").textContent = `Essais : ${essais}`;
 
   // Vérification
-  const resultat = verifier(proposition, nombreSecret);
-  
-  if (resultat === "gagne") {
-    terminerJeu();
+  if (proposition === nombreSecret) {
+    gagner();
+  } else if (proposition < nombreSecret) {
+    mettreAJour(proposition, "C'est plus ! 👆");
   } else {
-    actualiserIntervalle(proposition);
-    afficherIndice(resultat);
+    mettreAJour(proposition, "C'est moins ! 👇");
   }
 
-  // Réinitialise l'input
-  inputElement.value = "";
+  document.getElementById("nombre-input").value = "";
 }
 
-// Démarrage du jeu
-choisirNombre();
-document.getElementById("valider").addEventListener("click", jouer);
-
-// Permet de valider avec la touche Entrée
-document.getElementById("nombre-input").addEventListener("keypress", function(e) {
-  if (e.key === "Enter") {
-    jouer();
+function mettreAJour(proposition, message) {
+  // Actualiser l'intervalle
+  if (proposition > borneMin && proposition < nombreSecret) {
+    borneMin = proposition;
+  } else if (proposition < borneMax && proposition > nombreSecret) {
+    borneMax = proposition;
   }
-});
+  
+  afficherIntervalle();
+  document.getElementById("message").textContent = message;
+}
+
+function gagner() {
+  const victoire = document.getElementById("victoire");
+  victoire.textContent = `Gagné ! 🎉 Vous avez trouvé le nombre ${nombreSecret} !`;
+  victoire.classList.remove("cache");
+  document.getElementById("nombre-input").disabled = true;
+  document.getElementById("valider").disabled = true;
+  document.getElementById("message").disabled = " ";
+  jeuActif = false;
+}
+
+// DÉMARRAGE
+demarrerJeu();
