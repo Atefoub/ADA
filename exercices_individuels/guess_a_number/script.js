@@ -1,6 +1,6 @@
 // État du jeu
 let borneMin = 0;
-let borneMax = 50;
+let borneMax = 500
 let essais = 0;
 let nombreSecret;
 
