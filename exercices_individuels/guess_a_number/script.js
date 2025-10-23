@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // VARIABLES
+=======
+// État du jeu
+>>>>>>> Stashed changes
 =======
 // État du jeu
 >>>>>>> Stashed changes
@@ -7,6 +11,7 @@ let borneMin = 0;
 let borneMax = 50;
 let essais = 0;
 let nombreSecret;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 let jeuActif = true;
 
@@ -39,6 +44,17 @@ const bouton = document.getElementById("valider");
 function init() {
   let nombre;
   do {
+=======
+
+// Éléments DOM
+const input = document.getElementById("nombre-input");
+const bouton = document.getElementById("valider");
+
+// Joueur 1 choisit le nombre
+function init() {
+  let nombre;
+  do {
+>>>>>>> Stashed changes
     nombre = parseInt(prompt(`Entrez un nombre entre ${borneMin} et ${borneMax}`));
   } while (isNaN(nombre) || nombre <= borneMin || nombre >= borneMax);
   
@@ -47,11 +63,15 @@ function init() {
 }
 
 // Affiche l'intervalle
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 function afficherIntervalle() {
   document.getElementById("intervalle").textContent = `${borneMin} < ? < ${borneMax}`;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 // JEU
 function jouer() {
@@ -60,6 +80,27 @@ function jouer() {
   const proposition = parseInt(document.getElementById("nombre-input").value);
 
   // Validation
+=======
+// Affiche un message
+function afficherMessage(texte) {
+  document.getElementById("message").textContent = texte;
+}
+
+// Fin de partie
+function gagner() {
+  document.getElementById("victoire").textContent = 
+    `Gagné ! 🎉 Vous avez trouvé ${nombreSecret} !`;
+  document.getElementById("victoire").classList.remove("cache");
+  input.disabled = true;
+  bouton.disabled = true;
+}
+
+// Jouer un tour
+function jouer() {
+  const proposition = parseInt(input.value);
+
+  // Vérification
+>>>>>>> Stashed changes
 =======
 // Affiche un message
 function afficherMessage(texte) {
@@ -94,6 +135,7 @@ function jouer() {
   essais++;
   document.getElementById("compteur").textContent = `Essais : ${essais}`;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   // Vérification
   if (proposition === nombreSecret) {
@@ -147,6 +189,24 @@ demarrerJeu();
   input.value = "";
 }
 
+=======
+  // Comparaison
+  if (proposition === nombreSecret) {
+    gagner();
+  } else if (proposition < nombreSecret) {
+    borneMin = proposition;
+    afficherIntervalle();
+    afficherMessage("C'est plus ! 👆");
+  } else {
+    borneMax = proposition;
+    afficherIntervalle();
+    afficherMessage("C'est moins ! 👇");
+  }
+
+  input.value = "";
+}
+
+>>>>>>> Stashed changes
 // Événements
 bouton.addEventListener("click", jouer);
 input.addEventListener("keypress", (e) => {
@@ -154,5 +214,9 @@ input.addEventListener("keypress", (e) => {
 });
 
 // Démarrage
+<<<<<<< Updated upstream
+init();
+>>>>>>> Stashed changes
+=======
 init();
 >>>>>>> Stashed changes
