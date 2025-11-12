@@ -1,6 +1,6 @@
 async function fetchProducts() {
   try {
-    const response = await fetch('https://dummyjson.com/products');
+    const response = await fetch('https://dummyjson.com/products?delay=50');
     const data = await response.json();
     console.log(data);
     return data.products; // tableau de produits    
@@ -14,6 +14,7 @@ async function displayProducts() {
   const products = await fetchProducts();
   const container = document.getElementById('product-list');
 
+
   products.forEach(product => {
     const card = document.createElement('div');
     card.innerHTML = `
@@ -21,6 +22,7 @@ async function displayProducts() {
       <img src="${product.thumbnail}" alt="${product.title}" width="150">
       <p>${product.description}</p>
       <strong>${product.price} €</strong>
+      <img src="${product.meta.qrCode}" alt="${product.meta.barcode}" width="150">
     `;
     container.appendChild(card);
   });
