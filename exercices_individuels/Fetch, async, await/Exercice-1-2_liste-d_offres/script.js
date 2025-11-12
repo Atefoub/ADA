@@ -16,6 +16,7 @@ function generateOfferHTML(offer) {
     return `
         <article class="offer">
             <h2>${offer.titre}</h2>
+            <p>${offer.technologie}<p>
             <p>${offer.description}</p>
         </article>
     `;
