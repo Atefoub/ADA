@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Viewer</title>
+    <title>Recherche de Films</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Post Viewer</h1>
-    
-    <div>
-        <button id="prev">Précédent</button>
-        <label for="postId">Post #</label>
-        <input type="number" id="postId" value="1" min="1">
-        <button id="next">Suivant</button>
+    <div class="container">
+        <h1>🎬 Recherche de Films</h1>
+        
+        <!-- Barre de recherche -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher un film...">
+            <button id="searchBtn">Rechercher</button>
+        </div>
+        
+        <!-- Zone des résultats -->
+        <div id="results"></div>
+        
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
     </div>
-    
-    <div id="post" class="post">Chargement...</div>
 
     <script src="script.js"></script>
 </body>
