@@ -14,7 +14,7 @@ async function searchMovies(searchTerm, page = 1) {
         // Construction de l'URL avec paramètres de requête
         // ?s= pour le terme de recherche
         // &page= pour la pagination
-        const url = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}&page=${page}`;
+        const url = `https://corsproxy.io/?https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}&page=${page}`;
         
         const response = await fetch(url);
         const data = await response.json();
@@ -52,7 +52,7 @@ function displayMovies(movies) {
 
 // Fonction pour afficher la pagination
 function displayPagination(totalResults, currentPage) {
-    const totalPages = Math.ceil(totalResults / 10); // 10 résultats par page
+    const totalPages = Math.ceil(totalResults / 12); // 12 résultats par page
     const pagination = document.getElementById('pagination');
     
     pagination.innerHTML = `
