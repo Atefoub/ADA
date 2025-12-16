@@ -9,7 +9,7 @@ CREATE TABLE songs (
 INSERT INTO songs (title, artist, album, release_year)
 VALUES ('Shook Ones, Pt. II', 'Mobb Deep', 'The Infamous', 1995);
 
-INSERT INTO songs (title, artist, album, release_year)songssongs
+INSERT INTO songs (title, artist, album, release_year)
 VALUES ('C.R.E.A.M.', 'Wu-Tang Clan', 'Enter the Wu-Tang (36 Chambers)', 1993);
 
 INSERT INTO songs (title, artist, album, release_year)
