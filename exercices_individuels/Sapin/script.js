@@ -1,8 +1,8 @@
 
-// 1.1 Afficher une ligne d'étoiles
+// 1.1 Afficher une ligne d"étoiles
 
 function afficherEtoiles(n) {
-  console.log('*'.repeat(n));
+  console.log("*".repeat(n));
 }
 
 // 1.2 Afficher un rectangle
@@ -15,25 +15,25 @@ function afficherRectangle(hauteur, largeur) {
 // 1.3 Triangle droit (partie droite du sapin)
 function afficherTriangleDroite(n) {
   for (let i = 0; i < n; i++) {
-    console.log('*'.repeat(i) + '\\');
+    console.log("*".repeat(i) + "\\");
   }
 }
 
 // 1.4 Triangle gauche (partie gauche du sapin)
 function afficherTriangleGauche(n) {
   for (let i = 0; i < n; i++) {
-    console.log(' '.repeat(n - 1 - i) + '/' + '*'.repeat(i)); // enlève l'espace à gauche du sapin (repeat (n - 1 - i))
+    console.log(" ".repeat(n - 1 - i) + "/" + "*".repeat(i)); // enlève l"espace à gauche du sapin (repeat (n - 1 - i))
   }
 }
 
 // 2.1 Afficher un étage du sapin avec décorations
 function afficherEtage(hauteur, pointe_offset, espacement) {
   for (let i = pointe_offset; i < pointe_offset + hauteur; i++) {
-    let ligne = '';
+    let ligne = "";
     
-    // Ajouter l'espacement initial
+    // Ajouter l"espacement initial
     for (let j = 0; j < espacement; j++) {
-      ligne += ' ';
+      ligne += " ";
     }
     
     // Calculer la largeur de chaque côté
@@ -42,60 +42,60 @@ function afficherEtage(hauteur, pointe_offset, espacement) {
     
     // Ajouter les espaces à gauche
     for (let j = 0; j < espacesGauche; j++) {
-      ligne += ' ';
+      ligne += " ";
     }
     
     // Partie gauche avec décorations
-    ligne += '/';
+    ligne += "/";
     for (let j = 0; j < i; j++) {
       const rand = Math.random();
       if (i > 1 && j > 0 && j < i - 1) {
         if (rand < 0.1) {
-          ligne += 'o';
+          ligne += "o";
         } else if (rand < 0.15) {
-          ligne += '+';
+          ligne += "+";
         } else {
-          ligne += '*';
+          ligne += "*";
         }
       } else {
-        ligne += '*';
+        ligne += "*";
       }
     }
     
     // Tronc central
-    ligne += '|';
+    ligne += "|";
     
     // Partie droite avec décorations
     for (let j = 0; j < i; j++) {
       const rand = Math.random();
       if (i > 1 && j > 0 && j < i - 1) {
         if (rand < 0.1) {
-          ligne += 'o';
+          ligne += "o";
         } else if (rand < 0.15) {
-          ligne += '+';
+          ligne += "+";
         } else {
-          ligne += '*';
+          ligne += "*";
         }
       } else {
-        ligne += '*';
+        ligne += "*";
       }
     }
-    ligne += '\\';
+    ligne += "\\";
     
     console.log(ligne);
   }
 }
 
-// 2.2 Afficher le sapin complet avec l'étoile
+// 2.2 Afficher le sapin complet avec l"étoile
 function afficherSapin(etages, hauteur_etage) {
 
   const hauteurTotale = etages * hauteur_etage;
   
-  let ligneEtoile = '';
+  let ligneEtoile = "";
   for (let i = 0; i < hauteurTotale; i++) {
-    ligneEtoile += ' ';
+    ligneEtoile += " ";
   }
-  ligneEtoile += '+';
+  ligneEtoile += "+";
   console.log(ligneEtoile);
   
   for (let etage = 0; etage < etages; etage++) {
@@ -110,12 +110,12 @@ function afficherSapin(etages, hauteur_etage) {
   const espacementTronc = hauteurTotale - Math.floor(largeurTronc / 2);
   
   for (let i = 0; i < hauteurTronc; i++) {
-    let ligneTronc = '';
+    let ligneTronc = "";
     for (let j = 0; j < espacementTronc; j++) {
-      ligneTronc += ' ';
+      ligneTronc += " ";
     }
     for (let j = 0; j < largeurTronc; j++) {
-      ligneTronc += '#';
+      ligneTronc += "#";
     }
     console.log(ligneTronc);
   }
@@ -126,7 +126,7 @@ function afficherSapin(etages, hauteur_etage) {
 console.log(" Voici votre magnifique sapin de Noël ! \n");
 afficherSapin(3, 3);
 
-console.log(" Un sapin plus grand (4 étages de hauteur 4) ! \n");
-afficherSapin(10, 10);
+console.log(" Un sapin plus grand (6 étages de hauteur 6) ! \n");
+afficherSapin(6, 6);
 
 
