@@ -22,7 +22,7 @@ function afficherTriangleDroite(n) {
 // 1.4 Triangle gauche (partie gauche du sapin)
 function afficherTriangleGauche(n) {
   for (let i = 0; i < n; i++) {
-    console.log(' '.repeat(n - 1 - i) + '/' + '*'.repeat(i));
+    console.log(' '.repeat(n - 1 - i) + '/' + '*'.repeat(i)); // enlève l'espace à gauche du sapin (repeat (n - 1 - i))
   }
 }
 
@@ -129,5 +129,4 @@ afficherSapin(3, 3);
 console.log(" Un sapin plus grand (4 étages de hauteur 4) ! \n");
 afficherSapin(10, 10);
 
-afficherTriangleGauche(7)
 
