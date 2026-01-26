@@ -80,4 +80,4 @@ testPatterns();
 
 // Tester des patterns spécifiques
 displayPatternIfValid('441');
-displayPatternIfValid('5L5xL5xR5R5x');
+displayPatternIfValid('R5xL5L5xL5xR5R5x');
