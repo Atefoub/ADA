@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client API - TODO List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Ma TODO List</h1>
+            <p class="subtitle">Client API avec fetch()</p>
+        </header>
+
+        <div class="api-status">
+            <span id="status-indicator" class="status-dot"></span>
+            <span id="status-text">Connexion...</span>
+        </div>
+
+        <div class="add-todo-section">
+            <input 
+                type="text" 
+                id="todo-input" 
+                placeholder="Ajouter une nouvelle tâche..."
+                maxlength="100"
+            >
+            <button id="add-btn" class="btn btn-primary">
+                ➕ Ajouter
+            </button>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="active">Actives</button>
+            <button class="filter-btn" data-filter="completed">Terminées</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Chargement...</p>
+        </div>
+
+        <div id="error-message" class="error-message hidden"></div>
+
+        <ul id="todo-list" class="todo-list">
+            <!-- Les todos seront ajoutés ici dynamiquement -->
+        </ul>
+
+        <div class="stats">
+            <span id="todo-count">0 tâche(s)</span>
+            <button id="clear-completed" class="btn btn-secondary">
+                🗑️ Supprimer terminées
+            </button>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
