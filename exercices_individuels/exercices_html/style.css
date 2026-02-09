@@ -1,0 +1,22 @@
+header {
+    background-color: green;
+}
+
+main {
+    border: 1px solid red
+}
+
+#nom{
+    background-color: blueviolet;
+}
+
+.fieldset {
+    border: none
+}
+
+label {
+    color : green;
+    & > span {
+        color:blue;
+    }
+}

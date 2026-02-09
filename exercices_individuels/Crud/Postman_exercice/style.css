@@ -1,0 +1,414 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Section de configuration */
+.config-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-bottom: 3px solid #667eea;
+}
+
+.config-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.config-form {
+    display: grid;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Content */
+.content {
+    padding: 40px;
+}
+
+/* Endpoints */
+.endpoint {
+    background: #f8f9fa;
+    border-left: 5px solid #667eea;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.endpoint:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+/* Méthodes HTTP */
+.method {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: white;
+}
+
+.method.get {
+    background: #28a745;
+}
+
+.method.post {
+    background: #ffc107;
+    color: #333;
+}
+
+.method.patch {
+    background: #17a2b8;
+}
+
+.method.delete {
+    background: #dc3545;
+}
+
+.endpoint-title {
+    font-size: 1.4em;
+    color: #333;
+    font-weight: 600;
+}
+
+.endpoint-description {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Blocs de code */
+.code-block {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    position: relative;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background 0.3s;
+}
+
+.copy-btn:hover {
+    background: #5568d3;
+}
+
+/* Boutons de test */
+.test-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.test-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.test-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Container de réponse */
+.response-container {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e8f4f8;
+    border-radius: 8px;
+    border-left: 4px solid #17a2b8;
+}
+
+.response-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Tableau de paramètres */
+.params-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.params-table th,
+.params-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.params-table th {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+.params-table tr:hover {
+    background: #f5f5f5;
+}
+
+.params-table code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Notes */
+.note {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.note strong {
+    color: #856404;
+}
+
+.note code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Système de tabs */
+.tab-container {
+    margin: 20px 0;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1em;
+    color: #666;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+    color: #667eea;
+}
+
+.tab.active {
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+    font-weight: 600;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px 0;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Styles pour les titres h4 */
+h4 {
+    color: #333;
+    margin: 20px 0 10px 0;
+    font-size: 1.1em;
+}
+
+/* Styles pour les listes */
+ol, ul {
+    margin-left: 20px;
+}
+
+/* Styles pour les codes inline */
+code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #c7254e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .header p {
+        font-size: 1em;
+    }
+
+    .endpoint-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .config-section {
+        padding: 20px;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .params-table {
+        font-size: 0.9em;
+    }
+
+    .params-table th,
+    .params-table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .endpoint {
+        padding: 15px;
+    }
+
+    .method {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+
+    .endpoint-title {
+        font-size: 1.2em;
+    }
+
+    .code-block {
+        padding: 15px;
+        font-size: 0.85em;
+    }
+
+    .test-btn {
+        width: 100%;
+        padding: 15px;
+    }
+}

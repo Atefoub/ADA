@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide API Bibliothèque Postman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Guide API Bibliothèque</h1>
+            <p>Documentation interactive pour votre API Postman Library</p>
+        </div>
+
+        <div class="config-section">
+            <h2>⚙️ Configuration</h2>
+            <div class="config-form">
+                <div class="form-group">
+                    <label for="baseUrl">URL de base de l'API :</label>
+                    <input type="text" id="baseUrl" placeholder="https://library-api.postmanlabs.com" value="https://library-api.postmanlabs.com">
+                </div>
+                <div class="form-group">
+                    <label for="apiKey">Clé API :</label>
+                    <input type="text" id="apiKey" placeholder="postmanrulz" value="postmanrulz">
+                </div>
+                <div class="note">
+                    <strong>💡 Note :</strong> Ces valeurs correspondent aux variables Postman <code>{{baseUrl}}</code> et <code>api-key</code>. Modifiez-les selon votre configuration.
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- GET ALL BOOKS -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-title">Récupérer tous les livres</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête récupère la liste complète de tous les livres disponibles dans la bibliothèque.
+                </p>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'books-all-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'books-all-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'books-all-python')">Python</button>
+                    </div>
+
+                    <div id="books-all-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X GET "{{baseUrl}}/books" \
+  -H "api-key: postmanrulz"</pre>
+                        </div>
+                    </div>
+
+                    <div id="books-all-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>fetch('{{baseUrl}}/books', {
+  method: 'GET',
+  headers: {
+    'api-key': 'postmanrulz'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erreur:', error));</pre>
+                        </div>
+                    </div>
+
+                    <div id="books-all-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+url = "{{baseUrl}}/books"
+headers = {"api-key": "postmanrulz"}
+
+response = requests.get(url, headers=headers)
+print(response.json())</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="test-btn" onclick="testEndpoint('GET', '/books')">🧪 Tester cette requête</button>
+                <div id="response-books-all" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-books-all-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GET FICTION BOOKS -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-title">Récupérer les livres de fiction disponibles</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête filtre les livres par genre (fiction) et statut de disponibilité (non empruntés).
+                </p>
+
+                <h4>Paramètres de requête :</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Paramètre</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Exemple</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>genre</code></td>
+                            <td>string</td>
+                            <td>Le genre du livre</td>
+                            <td>fiction</td>
+                        </tr>
+                        <tr>
+                            <td><code>checkedOut</code></td>
+                            <td>boolean</td>
+                            <td>Statut d'emprunt</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'books-fiction-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'books-fiction-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'books-fiction-python')">Python</button>
+                    </div>
+
+                    <div id="books-fiction-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X GET "{{baseUrl}}/books?genre=fiction&checkedOut=false" \
+  -H "api-key: postmanrulz"</pre>
+                        </div>
+                    </div>
+
+                    <div id="books-fiction-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>const params = new URLSearchParams({
+  genre: 'fiction',
+  checkedOut: 'false'
+});
+
+fetch(`{{baseUrl}}/books?${params}`, {
+  method: 'GET',
+  headers: {
+    'api-key': 'postmanrulz'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data));</pre>
+                        </div>
+                    </div>
+
+                    <div id="books-fiction-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+url = "{{baseUrl}}/books"
+headers = {"api-key": "postmanrulz"}
+params = {"genre": "fiction", "checkedOut": "false"}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.json())</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="test-btn" onclick="testEndpoint('GET', '/books?genre=fiction&checkedOut=false')">🧪 Tester cette requête</button>
+                <div id="response-books-fiction" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-books-fiction-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GET BOOK BY ID -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-title">Récupérer un livre par son ID</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête récupère les détails d'un livre spécifique en utilisant son identifiant unique.
+                </p>
+
+                <div class="note">
+                    <strong>📝 Important :</strong> Remplacez <code>:id</code> par l'ID réel du livre que vous souhaitez récupérer.
+                </div>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'book-id-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'book-id-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'book-id-python')">Python</button>
+                    </div>
+
+                    <div id="book-id-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X GET "{{baseUrl}}/books/d3fb3318-0dcd-4c21-8a64-f779c419fbdf" \
+  -H "api-key: postmanrulz"</pre>
+                        </div>
+                    </div>
+
+                    <div id="book-id-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>const bookId = 'd3fb3318-0dcd-4c21-8a64-f779c419fbdf';
+
+fetch(`{{baseUrl}}/books/${bookId}`, {
+  method: 'GET',
+  headers: {
+    'api-key': 'postmanrulz'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data));</pre>
+                        </div>
+                    </div>
+
+                    <div id="book-id-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+book_id = "d3fb3318-0dcd-4c21-8a64-f779c419fbdf"
+url = f"{{baseUrl}}/books/{book_id}"
+headers = {"api-key": "postmanrulz"}
+
+response = requests.get(url, headers=headers)
+print(response.json())</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label for="bookIdInput" style="font-weight: 600; display: block; margin-bottom: 5px;">ID du livre :</label>
+                    <input type="text" id="bookIdInput" placeholder="Entrez l'ID du livre" 
+                           style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; width: 100%; max-width: 400px;">
+                </div>
+
+                <button class="test-btn" onclick="testBookById()">🧪 Tester cette requête</button>
+                <div id="response-book-id" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-book-id-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADD BOOK -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-title">Ajouter un nouveau livre</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête ajoute un nouveau livre à la bibliothèque. L'API retourne l'ID du livre créé.
+                </p>
+
+                <h4>Corps de la requête (JSON) :</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Champ</th>
+                            <th>Type</th>
+                            <th>Requis</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Titre du livre</td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Auteur du livre</td>
+                        </tr>
+                        <tr>
+                            <td><code>genre</code></td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Genre du livre</td>
+                        </tr>
+                        <tr>
+                            <td><code>yearPublished</code></td>
+                            <td>number</td>
+                            <td>✅</td>
+                            <td>Année de publication</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'add-book-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'add-book-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'add-book-python')">Python</button>
+                    </div>
+
+                    <div id="add-book-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X POST "{{baseUrl}}/books" \
+  -H "api-key: postmanrulz" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "genre": "finance",
+    "yearPublished": 1997
+  }'</pre>
+                        </div>
+                    </div>
+
+                    <div id="add-book-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>const bookData = {
+  title: "Rich Dad Poor Dad",
+  author: "Robert Kiyosaki",
+  genre: "finance",
+  yearPublished: 1997
+};
+
+fetch('{{baseUrl}}/books', {
+  method: 'POST',
+  headers: {
+    'api-key': 'postmanrulz',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(bookData)
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Livre créé avec ID:', data.id);
+});</pre>
+                        </div>
+                    </div>
+
+                    <div id="add-book-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+url = "{{baseUrl}}/books"
+headers = {
+    "api-key": "postmanrulz",
+    "Content-Type": "application/json"
+}
+data = {
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "genre": "finance",
+    "yearPublished": 1997
+}
+
+response = requests.post(url, headers=headers, json=data)
+print(f"Livre créé avec ID: {response.json()['id']}")</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Astuce Postman :</strong> Dans votre collection, un script de test sauvegarde automatiquement l'ID du livre créé dans une variable <code>{{id}}</code> pour l'utiliser dans les requêtes suivantes.
+                </div>
+
+                <button class="test-btn" onclick="testEndpoint('POST', '/books', {title: 'Livre Test', author: 'Auteur Test', genre: 'test', yearPublished: 2024})">🧪 Tester cette requête</button>
+                <div id="response-add-book" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-add-book-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHECKOUT BOOK -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method patch">PATCH</span>
+                    <span class="endpoint-title">Emprunter un livre</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête marque un livre comme emprunté en modifiant son statut <code>checkedOut</code>.
+                </p>
+
+                <h4>Corps de la requête (JSON) :</h4>
+                <div class="code-block">
+                    <pre>{
+  "checkedOut": true
+}</pre>
+                </div>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'checkout-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'checkout-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'checkout-python')">Python</button>
+                    </div>
+
+                    <div id="checkout-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X PATCH "{{baseUrl}}/books/{{id}}" \
+  -H "api-key: postmanrulz" \
+  -H "Content-Type: application/json" \
+  -d '{"checkedOut": true}'</pre>
+                        </div>
+                    </div>
+
+                    <div id="checkout-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>const bookId = 'votre-book-id';
+
+fetch(`{{baseUrl}}/books/${bookId}`, {
+  method: 'PATCH',
+  headers: {
+    'api-key': 'postmanrulz',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ checkedOut: true })
+})
+.then(response => response.json())
+.then(data => console.log('Livre emprunté:', data));</pre>
+                        </div>
+                    </div>
+
+                    <div id="checkout-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+book_id = "votre-book-id"
+url = f"{{baseUrl}}/books/{book_id}"
+headers = {
+    "api-key": "postmanrulz",
+    "Content-Type": "application/json"
+}
+data = {"checkedOut": True}
+
+response = requests.patch(url, headers=headers, json=data)
+print("Livre emprunté:", response.json())</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label for="checkoutIdInput" style="font-weight: 600; display: block; margin-bottom: 5px;">ID du livre à emprunter :</label>
+                    <input type="text" id="checkoutIdInput" placeholder="Entrez l'ID du livre" 
+                           style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; width: 100%; max-width: 400px;">
+                </div>
+
+                <button class="test-btn" onclick="testCheckout()">🧪 Tester cette requête</button>
+                <div id="response-checkout" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-checkout-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DELETE BOOK -->
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method delete">DELETE</span>
+                    <span class="endpoint-title">Supprimer un livre</span>
+                </div>
+                <p class="endpoint-description">
+                    Cette requête supprime définitivement un livre de la bibliothèque.
+                </p>
+
+                <div class="note">
+                    <strong>⚠️ Attention :</strong> Cette action est irréversible. Assurez-vous de vouloir supprimer le livre avant d'exécuter cette requête.
+                </div>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchTab(event, 'delete-curl')">cURL</button>
+                        <button class="tab" onclick="switchTab(event, 'delete-js')">JavaScript</button>
+                        <button class="tab" onclick="switchTab(event, 'delete-python')">Python</button>
+                    </div>
+
+                    <div id="delete-curl" class="tab-content active">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>curl -X DELETE "{{baseUrl}}/books/{{id}}" \
+  -H "api-key: postmanrulz"</pre>
+                        </div>
+                    </div>
+
+                    <div id="delete-js" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>const bookId = 'votre-book-id';
+
+fetch(`{{baseUrl}}/books/${bookId}`, {
+  method: 'DELETE',
+  headers: {
+    'api-key': 'postmanrulz'
+  }
+})
+.then(response => {
+  if (response.ok) {
+    console.log('Livre supprimé avec succès');
+  }
+});</pre>
+                        </div>
+                    </div>
+
+                    <div id="delete-python" class="tab-content">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                            <pre>import requests
+
+book_id = "votre-book-id"
+url = f"{{baseUrl}}/books/{book_id}"
+headers = {"api-key": "postmanrulz"}
+
+response = requests.delete(url, headers=headers)
+if response.ok:
+    print("Livre supprimé avec succès")</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label for="deleteIdInput" style="font-weight: 600; display: block; margin-bottom: 5px;">ID du livre à supprimer :</label>
+                    <input type="text" id="deleteIdInput" placeholder="Entrez l'ID du livre" 
+                           style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; width: 100%; max-width: 400px;">
+                </div>
+
+                <button class="test-btn" onclick="testDelete()">🧪 Tester cette requête</button>
+                <div id="response-delete" class="response-container" style="display: none;">
+                    <div class="response-title">Réponse :</div>
+                    <div class="code-block">
+                        <pre id="response-delete-content"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORKFLOW SECTION -->
+            <div class="endpoint" style="border-left-color: #28a745;">
+                <div class="endpoint-header">
+                    <span style="font-size: 2em;">🔄</span>
+                    <span class="endpoint-title">Workflow typique</span>
+                </div>
+                <p class="endpoint-description">
+                    Voici un exemple de flux de travail complet pour gérer les livres :
+                </p>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                    <ol style="line-height: 2; color: #333;">
+                        <li><strong>Lister tous les livres</strong> → <code>GET /books</code></li>
+                        <li><strong>Filtrer les livres disponibles</strong> → <code>GET /books?genre=fiction&checkedOut=false</code></li>
+                        <li><strong>Ajouter un nouveau livre</strong> → <code>POST /books</code> (sauvegardez l'ID retourné)</li>
+                        <li><strong>Consulter le livre ajouté</strong> → <code>GET /books/:id</code></li>
+                        <li><strong>Emprunter le livre</strong> → <code>PATCH /books/:id</code> avec <code>{"checkedOut": true}</code></li>
+                        <li><strong>Retourner le livre</strong> → <code>PATCH /books/:id</code> avec <code>{"checkedOut": false}</code></li>
+                        <li><strong>Supprimer le livre</strong> → <code>DELETE /books/:id</code></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- TIPS SECTION -->
+            <div class="endpoint" style="border-left-color: #ffc107;">
+                <div class="endpoint-header">
+                    <span style="font-size: 2em;">💡</span>
+                    <span class="endpoint-title">Conseils et bonnes pratiques</span>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">Variables Postman :</h4>
+                    <ul style="line-height: 2; color: #666;">
+                        <li><code>{{baseUrl}}</code> : L'URL de base de votre API</li>
+                        <li><code>{{id}}</code> : L'ID du dernier livre créé (automatiquement sauvegardé)</li>
+                        <li><code>{{favoriteActor}}</code> : Variable utilisée dans le skill check</li>
+                    </ul>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 15px; color: #333;">Authentification :</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        Toutes les requêtes nécessitent l'en-tête <code>api-key: postmanrulz</code>. 
+                        Dans Postman, ceci est configuré au niveau de la collection pour éviter de le répéter.
+                    </p>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 15px; color: #333;">Scripts de test :</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        La requête "add book" contient un script de test qui extrait automatiquement l'ID 
+                        du livre créé et le sauvegarde dans <code>{{id}}</code> pour une utilisation ultérieure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

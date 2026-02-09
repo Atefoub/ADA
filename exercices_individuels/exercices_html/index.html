@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Exemple HTML qui claque </title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <header>
+    <ul>
+    <li><a href ="#titre">Titre</a></li>
+    <li><a href ="#contenu">contenu</a></li>
+    <li><a href ="#footer">Footer</a></li>
+    </ul>
+  </header>
+  <main>
+    <h1 id="titre"style="margin-top: 40px;">Bienvenue sur mon site !!</h1>
+
+    <form action="#" method="get">
+        <fieldset class="fieldset">
+        <legend>identification</legend>
+        <label for="email">Login email:*</label>
+        <input type="email" id="email" name="email"required />
+        <label for="password">mot de passe (8 caractères minimum)</label>
+        <input type="password" id="password" name="password" required minlength="8" />
+        </fieldset>
+        
+        <fieldset class="fieldset">
+        <legend>adresse</legend>
+        <input type="text" id="adresse" name="adresse"/>
+        <label for="code postal">code postal:</label>
+        <input type="text" inputmode="numeric" id="code_postal" name="code_postal"/>
+        </fieldset>
+        <button type="submit">Envoyer</button>
+    </form>
+
+  </main>
+  <footer id="footer" role="contentinfo">
+    <ul>
+    <li><a href ="#">Plan du site</a></li>
+    <li><a href ="#">Mentions Légales</a></li>
+    <li><a href ="#">Nous contacter</a></li>
+    </ul>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
